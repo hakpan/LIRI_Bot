@@ -76,9 +76,16 @@ var getMovie = function(movieName) {
 	});
 }
 
+//--------------------text function------------------
+//create var to link to .text file
+//create function that will get the text from that file and when you enter the command in 
+//node it will do what the text function says
+
 
 //-------------------------------------------------
-//create a functions that will call on the function tweets, spotify, and ombd functions
+//create functions that will call on the functions above tweets, spotify, and ombd functions
+//when you do node liri.js <case> in terminal case being the case name listed below it 
+//will use the function above and complete the command
 var command = function(caseData, functionData) {
 	switch(caseData) {
 		case 'my-tweets' :
@@ -89,6 +96,10 @@ var command = function(caseData, functionData) {
 			break;
 		case 'movie-this' :
 			getMovie();
+			break;
+		//This case is for the .text file that liri will need to do what it says
+		case 'do-what-it-says' :
+			getText();
 			break;
 		//if you don't use case will default to this text
 		default:
