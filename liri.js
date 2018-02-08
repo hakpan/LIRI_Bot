@@ -72,6 +72,14 @@ var getMovie = function(movieName) {
 	    // Parse the body of the site and recover just the imdbRating
 	    // (Note: The syntax below for parsing isn't obvious. Just spend a few moments dissecting it).
 	    console.log("The movie's rating is: " + JSON.parse(body).imdbRating);
+	    //console.log Title of the movie.
+	    //console.log year movie came out
+	    //console.log rotten tomatoes rating of movie
+	    //console.log country where the movie was produced
+	    //console.log language of the movie
+	    //console.log plot of movie
+	    //console.log actors in movie
+
 	  }
 	});
 }
