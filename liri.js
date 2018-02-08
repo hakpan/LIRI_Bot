@@ -7,8 +7,11 @@ var Twitter = require('twitter');
 
 //npm Spotify 
 var spotify = require('spotify');
+
+//npm omdb
+var request = require("request");
  
-//------------------------------------------------
+//--------------------Tweets---------------------
 //Create a function that will hold tweets so it doesn't run automatically
 var getTweets = function() {
 	var client = new Twitter(keys.twitter);
@@ -26,8 +29,12 @@ var getTweets = function() {
 	  }
 	});
 }
-//------------------------------------------------
+//--------------------Spotify--------------------
 //create function that will have Spotify data
+//my keys are not connecting. They should be calling the 
+//keys below with spotify.search it matches the var at the top
+//and then there is the var keys at top that links to the
+//keys page, which links to the .env page, but it's not working
 
 var getArtistNames = function(artist) {
 	return artist.name;
@@ -53,8 +60,25 @@ var getSpotify = function(songName) {
 	    }
 	});
 }
+//---------------------ombd-------------------
+//create function that gets omdb database so we can search movies
+// Then run a request to the OMDB API with the movie specified
+var getMovie = function(movieName) {
+	request("http://www.omdbapi.com/?t=" + movieName + " &y=&plot=short&apikey=trilogy", function(error, response, body) {
+
+	  // If the request is successful (i.e. if the response status code is 200)
+	  if (!error && response.statusCode === 200) {
+
+	    // Parse the body of the site and recover just the imdbRating
+	    // (Note: The syntax below for parsing isn't obvious. Just spend a few moments dissecting it).
+	    console.log("The movie's rating is: " + JSON.parse(body).imdbRating);
+	  }
+	});
+}
+
+
 //-------------------------------------------------
-//create a function that will call on the function getTweets when we enter it into node
+//create a functions that will call on the function tweets, spotify, and ombd functions
 var command = function(caseData, functionData) {
 	switch(caseData) {
 		case 'my-tweets' :
@@ -62,6 +86,9 @@ var command = function(caseData, functionData) {
 			break;
 		case 'spotify-this-song' :
 			getSpotify();
+			break;
+		case 'movie-this' :
+			getMovie();
 			break;
 		//if you don't use case will default to this text
 		default:
